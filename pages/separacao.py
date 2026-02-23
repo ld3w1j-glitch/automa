@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 import io
 import zipfile
-
+from st_gsheets_connection import GSheetsConnection
 # 1. SEGURANÇA E INICIALIZAÇÃO
 if "logado" not in st.session_state or not st.session_state["logado"]:
     st.error("Por favor, faça login na página principal.")
@@ -191,4 +191,5 @@ with tab_hist:
 
         col_ex1, col_ex2 = st.columns(2)
         col_ex1.download_button("📊 Baixar Planilha (Excel)", data=gerar_excel(df_h), file_name=f"separacao_{datetime.now().strftime('%d_%m')}.xlsx", use_container_width=True)
+
         col_ex2.download_button("📥 Baixar TXTs (ZIP)", data=gerar_zip(df_h), file_name="lojas_individual.zip", use_container_width=True)
